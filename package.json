@@ -1,0 +1,29 @@
+{
+    "author": "oss@fastly.com",
+    "dependencies": {
+        "@fastly/expressly": "^1.0.0-beta.1",
+        "@fastly/js-compute": "^0.5.4",
+        "jws": "^4.0.0",
+        "mustache": "^4.2.0",
+        "node-polyfill-webpack-plugin": "^2.0.1"
+    },
+    "devDependencies": {
+        "core-js": "^3.19.1",
+        "nodemon": "^2.0.20",
+        "webpack": "^5.64.0",
+        "webpack-cli": "^4.9.1"
+    },
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "license": "MIT",
+    "main": "src/index.js",
+    "name": "MultiCloudStitching",
+    "scripts": {
+        "build": "js-compute-runtime bin/index.js bin/main.wasm",
+        "deploy": "npm run build && fastly compute deploy",
+        "prebuild": "webpack",
+        "dev": "nodemon -L --watch src --exec \"npm run build && fastly compute serve --skip-verification --skip-build\""
+    },
+    "version": "0.3.0"
+}
